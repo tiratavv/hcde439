@@ -82,7 +82,7 @@ void loop() {
     <h3>Q1. Voltage Across LEDs Over Time</h3>
     <img src="IMG_4639.jpeg" width="600">
 
-    <h3>How many LEDs could you blink independently with your Arduino? How much current would that draw?</h3>
+    <h3>Q2. How many LEDs could you blink independently with your Arduino? How much current would that draw?</h3>
     <p>The Arduino Uno has 14 digital pins and 6 analog pins that can also be used as digital outputs, 
       allowing up to 20 LEDs to be controlled independently. In my circuit, each LED uses a 220 Omega resistor. 
       Assuming a 2V forward voltage, each LED draws approximately (5V - 2V) / 220 Omega = 13.6mA. If all 20 LEDs 
@@ -90,7 +90,7 @@ void loop() {
       microcontroller's safe total I/O current capacity, so an external LED driver or transistors would 
       be needed to operate all 20 at this current.</p>
 
-    <h3>How fast do you need to blink your LEDs until you no longer can tell that they are blinking?</h3>
+    <h3>Q3. How fast do you need to blink your LEDs until you no longer can tell that they are blinking?</h3>
     <p>At around 50 to 60 flashes per second, the LEDs would generally begin to appear continuously 
       lit rather than visibly blinking, although this varies with viewing conditions and individual 
       perception. For example, setting both the ON and OFF delays to 10 milliseconds would produce 
