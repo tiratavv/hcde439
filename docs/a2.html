@@ -4,15 +4,129 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
 
-    <title>Example Student's HCDE 439 Physical Computing Page!</title>
+    <title>Tirata's HCDE 439 Physical Computing Page!</title>
 
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <h1>Example Student's Assignment 2!</h1>
+    <h1>Tirata's Assignment 2!</h1>
     <div class="header">
-      <img src="red-panda.jpg" />
-      <p>Here is all the documentation for assignment 2!</p>
+      <p> 
+        For this assignment, I created a simple light-up circuit
+        using three LEDs and a push button. When the button is pressed, 
+        two LEDs turn on while the third gradually fades in and out. 
+        When the button is released, the LEDs turn off.
+      </p>
     </div>
+    <h2>Schematic and Circuit</h2>
+    <img src="IMG_4797.jpeg" width="600">
+    <p>
+      I connected three LEDs to pins 9, 10, and 11, each with
+      a 220 Ohm resistor to limit the current. The button is
+      connected to pin 2 with a 10k Ohm pull-down resistor,
+      which keeps the input LOW when the button is not pressed.
+    </p>
+
+    <h2>Code</h2>
+    <pre><code>
+int led1 = 9;         // assign led1 to pin 9
+int led2 = 10;       // assign led2 to pin 10
+int led3 = 11;        // assign led3 to pin 11
+int button = 2;       //assign the button to pin 2
+
+void setup() {
+  // declare pin 9,10,11 to be output:
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(led3, OUTPUT);
+
+  // set the button as input.
+  pinMode(button, INPUT);
+
+}
+
+void loop() {
+   // check if the button is pressed
+  if (digitalRead(button) == HIGH) {
+
+    // turn on LED 1
+    digitalWrite(led1, HIGH);
+
+    // turn on LED 2
+    digitalWrite(led2, HIGH);
+
+    // gradually increase Led3 brightness
+    for (int i = 0; i <= 255; i++) {
+      // set led3 brightness
+      analogWrite(led3, i);
+
+      // wait for the next brightness level
+      delay(5);
+    }
+    // gradually decrease led3 brightness
+    for (int i = 255; i >= 0; i--) {
+      // set led3 brightness
+      analogWrite(led3, i);
+
+      // wait for the next brightness level
+      delay(5);
+    }
+
+  } else {
+
+    // turn off led1
+    digitalWrite(led1, LOW);
+
+    // turn off led2
+    digitalWrite(led2, LOW);
+
+    // turn off led3
+    analogWrite(led3, 0);
+  }
+}
+    </code></pre>
+    
+    <h2>Circuit Operation</h2>
+    <img src="IMG_4637.gif" width="600">
+    <img src="IMG_4796.gif" width="600">
+    <img src="IMG_4793.jpeg" width="600">
+    <p>
+      Pressing the button turns on the first two LEDs,
+      while the third LED fades in and out using PWM.
+      The for loops gradually change its brightness.
+    </p>
+
+    <h2>Additional Questions</h2>
+    <h3>Q1. Voltage Across LEDs Over Time</h3>
+    <img src="IMG_4797 (2).jpeg" width="600">
+
+    <p>
+      analogWrite(64) produces approximately a 25% duty cycle,
+      analogWrite(128) produces a 50% duty cycle, and
+      analogWrite(255) produces a 100% duty cycle.
+      A higher duty cycle makes the LED appear brighter.
+    </p>
+
+    <h3>Q2. If all your LEDs were on simultaneously, what would the total current draw be? Is this above or below the total Arduino current draw limits? If all your LEDs were on, how long would your circuit run if powered by a 1200 mAh battery?</h3>
+    <p>
+      Assuming a 2V forward voltage, each LED draws
+      (5 - 2) / 220 = 13.64mA. If all three LEDs are on,
+      the total LED current is approximately 40.91mA.
+      Including the 0.5mA through the button's pull-down
+      resistor, the total external circuit current is
+      approximately 41.41mA when the button is pressed.
+    </p>
+
+    <h3>Q3. Measure and record the actual voltage across one of your LEDs when it's on. How does this compare to the theoretical forward voltage for your LED color?</h3>
+    <p>
+      I measured the voltage across each LED using a multimeter. 
+      LED 1 measured 2.02V, which was very close to the assumed 2V 
+      forward voltage. LED 2 measured around 2.60 to 2.64V, slightly 
+      higher than expected. LED 3 was continuously fading, so the
+       multimeter readings fluctuated between approximately 0.18V and 
+       1.85V due to PWM.
+    </p>
+
+
   </body>
 </html>
