@@ -49,13 +49,13 @@ void loop() {
    // check if the button is pressed
   if (digitalRead(button) == HIGH) {
 
-    // turn on LED 1
+    // turn on led 1
     digitalWrite(led1, HIGH);
 
-    // turn on LED 2
+    // turn on led 2
     digitalWrite(led2, HIGH);
 
-    // gradually increase Led3 brightness
+    // gradually increase Led 3 brightness
     for (int i = 0; i <= 255; i++) {
       // set led3 brightness
       analogWrite(led3, i);
@@ -63,7 +63,7 @@ void loop() {
       // wait for the next brightness level
       delay(5);
     }
-    // gradually decrease led3 brightness
+    // gradually decrease led 3 brightness
     for (int i = 255; i >= 0; i--) {
       // set led3 brightness
       analogWrite(led3, i);
@@ -74,13 +74,13 @@ void loop() {
 
   } else {
 
-    // turn off led1
+    // turn off led 1
     digitalWrite(led1, LOW);
 
-    // turn off led2
+    // turn off le 2
     digitalWrite(led2, LOW);
 
-    // turn off led3
+    // turn off led 3
     analogWrite(led3, 0);
   }
 }
